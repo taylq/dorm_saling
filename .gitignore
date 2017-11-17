@@ -28,3 +28,7 @@
 /config/database.yml
 
 /config/secrets.yml
+
+/.framgia-ci-reports
+
+/.framgia-ci-result.temp.yml
