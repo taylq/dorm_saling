@@ -1,6 +1,6 @@
-en:
-  title_t: "FU-HL"
+vi:
+  title_t: "Đại học FPT - Hòa Lạc"
   pages:
     home:
-      title: "Home Page"
+      title: "Trang chủ"
       description: "This would be a static home page in a Rails application."
