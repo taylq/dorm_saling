@@ -1,4 +1,4 @@
 class ProductArea < ApplicationRecord
-  belong_to :area
-  belong_to :product
+  belongs_to :area
+  belongs_to :product
 end

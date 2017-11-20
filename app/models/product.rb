@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
-  belong_to :category
-  belong_to :user
+  belongs_to :category
+  belongs_to :user
 
   has_many :order_details, dependent: :destroy
   has_many :orders, through: :order_details, dependent: :destroy

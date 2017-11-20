@@ -1,6 +1,9 @@
 IrresponsibleModule:
   enabled: false
-
+UnusedParameters:
+  enabled: false
+UtilityFunction:
+  enabled: false
 exclude_paths:
   - 'vendor'
   - 'db/migrate'

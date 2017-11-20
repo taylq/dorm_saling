@@ -25,7 +25,12 @@ RemoveEmptyHelpersCheck: { }
 RemoveTrailingWhitespaceCheck: { }
 RemoveUnusedMethodsInControllersCheck: {
   except_methods: [
-    "PagesController#show"
+    "PagesController#show",
+    "ConfirmationsController#after_confirmation_path_for",
+    "UsersController#index",
+    "UsersController#show",
+    "UsersController#edit",
+    "UsersController#update"
   ]
 }
 RemoveUnusedMethodsInHelpersCheck: { except_methods: [] }
