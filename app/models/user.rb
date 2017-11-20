@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   enum position: %i(admin seller user)
 
+  ATTRIBUTE_PARAMS =
+    %i(name email room phone area_id password password_confirmation).freeze
+
   belongs_to :area
 
   has_many :orders, dependent: :destroy
