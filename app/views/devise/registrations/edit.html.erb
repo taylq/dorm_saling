@@ -31,7 +31,7 @@
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div><%= t "devise.mailer.waiting_confirm",
-      params: resource.unconfirmed_email %>
+      unconfirmed: resource.unconfirmed_email %>
     </div>
   <% end %>
 

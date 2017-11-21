@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20171118100306) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "seller_id"
     t.decimal "price"
     t.string "picture"
     t.integer "category_id"
@@ -59,6 +58,7 @@ ActiveRecord::Schema.define(version: 20171118100306) do
     t.time "finish_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 20171118100306) do
     t.string "email"
     t.string "room"
     t.integer "phone"
-    t.integer "position"
-    t.integer "area_id"
+    t.integer "position", default: 2, null: false
+    t.integer "area_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reset_password_token"
