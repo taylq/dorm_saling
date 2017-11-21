@@ -6,6 +6,7 @@ en:
   update_fail: "Update failed"
   destroy_succ: "Delete successfully"
   back: "Back"
+  change: "Change"
   pages:
     home:
       title: "Home Page"
@@ -18,7 +19,7 @@ en:
       confirm_acc: "You can confirm your account email through the link below:"
       confirm: "Confirm my account"
       hello: "Hello"
-      being_change: "We're contacting you to notify you that your email is being changed to "
+      being_change: "We're contacting you to notify you that your email is being changed to %{unconfirmed}"
       email_has_been_change: "We're contacting you to notify you that your email has been changed to "
       pass_has_been_change: "We're contacting you to notify you that your password has been changed."
       requested: "Someone has requested a link to change your password. You can do this through the link below."
@@ -33,7 +34,7 @@ en:
       forgot_pass: "Forgot your password?"
       send_pass: "Send me reset password instructions"
       edit: "Edit"
-      waiting_confirm: "Currently waiting confirmation for: %{params}"
+      waiting_confirm: "Currently waiting confirmation for: %{unconfirmed}"
       need_confirm: "(we need your current password to confirm your changes)"
       update: "Update"
       sign_up: "Sign up"

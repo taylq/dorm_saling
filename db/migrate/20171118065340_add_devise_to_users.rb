@@ -3,10 +3,14 @@ class AddDeviseToUsers < ActiveRecord::Migration[5.1]
     change_table :users do |t|
       ## Database authenticatable
       ## Recoverable
+      change_column :users, :position, :integer, null: false, default: "2"
+      change_column :users, :area_id, :integer, null: false
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
       add_column :users, :encrypted_password, :string, null: false, default: ""
+      add_column :products, :user_id, :integer
       remove_column :users, :password, :string
+      remove_column :products, :seller_id, :integer
       ## Rememberable
       t.datetime :remember_created_at
 

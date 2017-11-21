@@ -7,8 +7,7 @@ class UsersController < Devise::RegistrationsController
     @users = User.paginate page: params[:page]
   end
 
-  def new
-  end
+  def new; end
 
   def create
     if user.save
@@ -26,8 +25,7 @@ class UsersController < Devise::RegistrationsController
 
   def update
     if user.update_attributes user_params
-      flash[:success] = t "update_succ"
-      redirect_to user
+      ajax
     else
       flash[:danger] = t "update_fail"
       render :edit
@@ -44,5 +42,12 @@ class UsersController < Devise::RegistrationsController
 
   def user_params
     params.require(:user).permit User::ATTRIBUTE_PARAMS
+  end
+
+  def ajax
+    respond_to do |format|
+      format.js
+      format.html{redirect_to users_path}
+    end
   end
 end
