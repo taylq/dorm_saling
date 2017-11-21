@@ -12,4 +12,8 @@ module ApplicationHelper
   def area_name
     Area.pluck(:name, :id)
   end
+
+  def noti
+    @notifications = Notification.all.reverse
+  end
 end

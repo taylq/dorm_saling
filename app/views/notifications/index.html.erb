@@ -1,0 +1,14 @@
+<ul>
+  <div>
+    <div class="notifications notificationsbody">
+      <ul class="notificationlist">
+        <% @notifications.each do |noti| %>
+          <li>
+            <%= noti.event %>
+            <span> <%= noti.created_at.strftime("%I:%M %p %d %b.") %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</ul>

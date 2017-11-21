@@ -1,0 +1,18 @@
+<ul class="notificator">
+  <%= link_to "#", class: "open_notification" do %>
+    <%= render("notifications/counter", counter: notifications.count) %>
+  <% end %>
+  <div class="notificationcontainer">
+    <div class="notificationtitle"><%= t "notifications" %>
+      <%= link_to t("mark_all_read"), "#", class: "pull-right" %></div>
+    <div class="notifications notificationsbody">
+      <ul class="notificationlist">
+        <%= render partial: "notifications/notification",
+          collection: notifications, as: :notification %>
+      </ul>
+    </div>
+    <div class="notificationfooter">
+      <%= link_to t("see_all"), notifications_path %>
+    </div>
+  </div>
+</ul>

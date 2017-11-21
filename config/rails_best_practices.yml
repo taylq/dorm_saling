@@ -31,7 +31,9 @@ RemoveUnusedMethodsInControllersCheck: {
     "UsersController#show",
     "UsersController#edit",
     "UsersController#update",
-    "UsersController#create"
+    "UsersController#create",
+    "MessagesController#message_params",
+    "NotificationsController#index"
   ]
 }
 RemoveUnusedMethodsInHelpersCheck: { except_methods: [] }
