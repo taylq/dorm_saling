@@ -7,6 +7,7 @@ en:
   destroy_succ: "Delete successfully"
   back: "Back"
   change: "Change"
+  submit: "Submit"
   pages:
     home:
       title: "Home Page"
