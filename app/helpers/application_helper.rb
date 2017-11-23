@@ -6,10 +6,10 @@ module ApplicationHelper
   end
 
   def area_choices
-    area_name
+    Area.pluck :name, :id
   end
 
-  def area_name
-    Area.pluck(:name, :id)
+  def category_choices
+    Category.pluck :name, :id
   end
 end

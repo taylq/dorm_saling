@@ -1,0 +1,59 @@
+<div class="format-login container">
+  <%= form_for product, local: true do |form| %>
+
+    <div class="field">
+      <%= form.hidden_field :user_id, value: current_user.id %>
+    </div>
+
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= form.label :description %>
+      <%= form.text_area :description %>
+    </div>
+
+    <div class="field">
+      <%= form.label :price %><br/>
+      <%= form.number_field :price, label: false %>
+    </div>
+
+    <span class="picture" id="micropost_picture">
+      <%= form.file_field :picture, accept: "image/jpeg,image/gif,image/png" %>
+    </span>
+
+    <div class="field">
+      <%= form.label :category_id %><br/>
+      <%= form.select :category_id, category_choices %>
+    </div>
+
+    <div class="field">
+      <%= form.label :begin_at %><br/>
+      <%= form.time_select :begin_at %>
+    </div>
+
+    <div class="field">
+      <%= form.label :finish_at %><br/>
+      <%= form.time_select :finish_at %>
+    </div>
+
+    <div class="field" data-length="<%= areas.length %>" id="length">
+      <% areas.each do |area| %>
+        <%= form.fields_for :areas_products,
+          area.area_ids_of_product(product) ||
+          product.areas_products.build do |ap| %>
+          <%= form.label area.name %>
+          <%= ap.check_box :area_id, {id: "checkbox_check#{area.id}",
+            class: "checkbox2"}, area.id, 0 %>
+          <%= ap.hidden_field :_destroy, id: "data-form-prepend#{area.id}" %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit t("submit")%>
+    </div>
+  <% end %>
+</div>

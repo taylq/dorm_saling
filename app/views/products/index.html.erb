@@ -1,0 +1,45 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= t "image" %></th>
+      <th><%= t "name" %></th>
+      <th><%= t "des" %></th>
+      <th><%= t "price" %></th>
+      <th><%= t "area" %></th>
+      <th><%= t "start_time" %></th>
+      <th><%= t "finish_time" %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= image_tag product.picture.url if product.picture? %></td>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+        <td>
+          <% product.areas.each do |area| %>
+            <%= area.name %>
+          <% end %>
+        </td>
+        <td><%= product.begin_at.strftime("%I:%M %p %d %b.") %></td>
+        <td><%= product.finish_at.strftime("%I:%M %p %d %b.") %></td>
+        <% if can? :update, product %>
+          <td><%= link_to t("edit"),
+            edit_product_path(product), class: "btn btn-info" %></td>
+          <td><%= link_to t("destroy"), product,
+            method: :delete, data: {confirm: t("confirm")},
+            class: "btn btn-danger" %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if can? :new, Product %>
+  <%= link_to t("new"), new_product_path %>
+<% end %>

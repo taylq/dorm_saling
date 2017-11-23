@@ -1,5 +1,7 @@
-class UsersController < Devise::RegistrationsController
+class UsersController < ApplicationController
   attr_reader :user, :users
+
+  before_action :authenticate_user!
 
   load_and_authorize_resource
 

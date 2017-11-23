@@ -1,5 +1,9 @@
 class Area < ApplicationRecord
-  has_many :product_areas, dependent: :destroy
-  has_many :products, through: :product_areas, dependent: :destroy
+  has_many :areas_products, dependent: :destroy
+  has_many :products, through: :areas_products, dependent: :destroy
   has_many :users, dependent: :destroy
+
+  def area_ids_of_product product_id
+    areas_products.find_by(product_id: product_id)
+  end
 end
