@@ -8,7 +8,9 @@ class Ability
     elsif user.seller?
       can :manage, Product, user_id: user.id
       can %i(show edit update create), User
+      can :manage, Order
     else
+      can :manage, Order
       can :read, Product
       can %i(show edit update create), User
     end

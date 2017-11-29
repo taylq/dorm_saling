@@ -45,16 +45,18 @@
         <% if area.area_ids_of_product(product).present? %>
           <%= form.fields_for :areas_products,
             area.area_ids_of_product(product) do |ap| %>
-            <%= ap.check_box :area_id, {id: "checkbox_check"}, area.id, 0 %>
+            <%= ap.check_box :area_id, {id: "checkbox_check#{area.id}",
+              class: "chec-kbox"}, area.id, 0 %>
             <%= form.label area.name %>
-            <%= ap.hidden_field :_destroy, id: "data-form-prepend" %>
+            <%= ap.hidden_field :_destroy, id: "data-form-prepend#{area.id}" %>
           <% end %>
         <% else %>
           <%= form.fields_for :areas_products,
             product.areas_products.build do |ap| %>
-            <%= ap.check_box :area_id, {id: "checkbox_check"}, area.id, 0 %>
+            <%= ap.check_box :area_id, {id: "checkbox_check#{area.id}",
+              class: "chec-kbox"}, area.id, 0 %>
             <%= form.label area.name %>
-            <%= ap.hidden_field :_destroy, id: "data-form-prepend" %>
+            <%= ap.hidden_field :_destroy, id: "data-form-prepend#{area.id}" %>
           <% end %>
         <% end %>
       <% end %>
@@ -66,4 +68,12 @@
   <% end %>
 </div>
 <script type="text/javascript">
+  var i = 1;
+  for (i = 1; i <= 4; i++){
+    if ($("#checkbox_check"+i).attr("checked")){
+      $("data-form-prepend"+i).val("false");
+    } else {
+      $("data-form-prepend"+i).val("true");
+    }
+  };
 </script>

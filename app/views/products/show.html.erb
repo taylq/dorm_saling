@@ -1,0 +1,33 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= t "image" %></th>
+      <th><%= t "name" %></th>
+      <th><%= t "des" %></th>
+      <th><%= t "price" %></th>
+      <th><%= t "area" %></th>
+      <th><%= t "start_time" %></th>
+      <th><%= t "finish_time" %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= image_tag @product.picture.url if @product.picture? %></td>
+        <td><%= @product.name %></td>
+        <td><%= @product.description %></td>
+        <td><%= @product.price %></td>
+        <td>
+          <% @product.areas.each do |area| %>
+            <%= area.name %>
+          <% end %>
+        </td>
+        <td><%= @product.begin_at.strftime("%I:%M %p") %></td>
+        <td><%= @product.finish_at.strftime("%I:%M %p") %></td>
+      </tr>
+  </tbody>
+</table>
+
+<br>
+<%= link_to t("buy"), new_order_path %>

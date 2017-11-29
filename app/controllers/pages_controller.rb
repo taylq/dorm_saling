@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def show
+    @products = Product.where("begin_at < '#{Time.now}' and '#{Time.now}' < finish_at")
     if valid_page?
       render "pages/#{params[:page]}"
     else

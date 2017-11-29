@@ -1,0 +1,8 @@
+<div class="left-sidebar">
+  <h2 style="font-size: 24px;"><%= t "new" %></h2>
+</div>
+
+<%= render "form", order: @order %>
+<br/>
+<%= link_to t("back"), products_path,
+  class: "btn btn-info" %>

@@ -13,6 +13,7 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :areas_products, allow_destroy: true,
     reject_if: proc {|attributes| attributes['area_id'] == "0"}
+  accepts_nested_attributes_for :order_details, allow_destroy: true
 
   mount_uploader :picture, PictureUploader
   validate :picture_size
