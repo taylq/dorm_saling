@@ -31,7 +31,12 @@ RemoveUnusedMethodsInControllersCheck: {
     "UsersController#show",
     "UsersController#edit",
     "UsersController#update",
-    "UsersController#create"
+    "UsersController#create",
+    "ProductsController#index",
+    "ProductsController#create",
+    "ProductsController#show",
+    "ProductsController#edit",
+    "ProductsController#update"
   ]
 }
 RemoveUnusedMethodsInHelpersCheck: { except_methods: [] }

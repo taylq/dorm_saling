@@ -1,4 +1,4 @@
-class ProductArea < ApplicationRecord
+class AreasProduct < ApplicationRecord
   belongs_to :area
   belongs_to :product
 end

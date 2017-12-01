@@ -18,6 +18,13 @@ ActiveRecord::Schema.define(version: 20171118100306) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "areas_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "area_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -37,13 +44,6 @@ ActiveRecord::Schema.define(version: 20171118100306) do
     t.time "order_time"
     t.integer "status"
     t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "product_areas", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "area_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
