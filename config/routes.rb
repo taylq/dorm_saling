@@ -5,6 +5,11 @@ Rails.application.routes.draw do
     root "pages#show", page: "home"
 
     resources :users
-    resources :products
+    resources :orders
+    resources :carts
+    resources :products do
+      resources :order_details, only: :create
+    end
+    resources :order_details, only: %i(show destroy edit update)
   end
 end

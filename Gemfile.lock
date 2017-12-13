@@ -369,6 +369,8 @@ GEM
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
     parallel (1.12.0)
+    paranoia (2.4.0)
+      activerecord (>= 4.0, < 5.2)
     parser (2.4.0.2)
       ast (~> 2.3)
     pg (0.18.4)
@@ -583,6 +585,7 @@ DEPENDENCIES
   minitest
   minitest-reporters
   omniauth-facebook
+  paranoia (~> 2.2)
   pg (= 0.18.4)
   puma (= 3.9.1)
   railroady

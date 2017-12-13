@@ -12,4 +12,8 @@ module ApplicationHelper
   def category_choices
     Category.pluck :name, :id
   end
+
+  def status_choice
+    Order.statuses.keys.map{|status| [t("#{status}"), status]}
+  end
 end

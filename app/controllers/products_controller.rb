@@ -4,7 +4,9 @@ class ProductsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @products = Product.product_by_time
+    @categories = Category.all
+    @products = Product.product_by_category(@categories)
+      .product_by_area(current_user.area_id).product_by_time
   end
 
   def new

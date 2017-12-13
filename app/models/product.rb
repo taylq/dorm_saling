@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  acts_as_paranoid
   ATTRIBUTE_PARAMS =
     [:id, :name, :description, :user_id, :price, :picture, :category_id,
       :begin_at, :finish_at,
@@ -19,8 +20,12 @@ class Product < ApplicationRecord
   validate :picture_size
   validates :name, presence: true
 
-  scope :product_by_time, lambda{where("? BETWEEN begin_at AND finish_at",
-    Time.zone.now)}
+  scope :product_by_time,
+    ->{where "? BETWEEN begin_at AND finish_at", Time.zone.now}
+  scope :product_by_area,
+    ->(area_id){joins(:areas_products).where areas_products: {area_id: area_id}}
+  scope :product_by_category,
+    ->(category_id){where category_id: category_id}
 
   private
 

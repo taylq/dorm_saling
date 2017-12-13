@@ -8,6 +8,9 @@
           <% if current_user.admin? %>
             <li><%= link_to t("layouts.header.users"), users_path %></li>
           <% end %>
+          <li><%= link_to t("layouts.header.products"), products_path %></li>
+          <li><%= link_to t("layouts.header.cart"),
+            cart_path(@current_cart) %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <%= t "layouts.header.account" %><b class="caret"></b></a>

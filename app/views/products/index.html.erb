@@ -26,12 +26,19 @@
         </td>
         <td><%= product.begin_at.strftime("%I:%M %p %d %b.") %></td>
         <td><%= product.finish_at.strftime("%I:%M %p %d %b.") %></td>
+        <td>
+          <% if cannot? :update, product %>
+            <%= link_to t("buy"), product_order_details_path(product),
+              method: :post, class: "btn btn-info" %>
+          <% end %>
+        </td>
         <% if can? :update, product %>
           <td><%= link_to t("edit"),
             edit_product_path(product), class: "btn btn-info" %></td>
-          <td><%= link_to t("destroy"), product,
-            method: :delete, data: {confirm: t("confirm")},
-            class: "btn btn-danger" %>
+          <td>
+            <%= link_to t("destroy"), product,
+              method: :delete, data: {confirm: t("confirm")},
+              class: "btn btn-danger" %>
           </td>
         <% end %>
       </tr>
