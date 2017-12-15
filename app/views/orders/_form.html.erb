@@ -1,0 +1,26 @@
+<div class="format-login container">
+  <%= form_for [product, order], local: true do |form| %>
+
+    <div class="field">
+      <%= form.hidden_field :user_id, value: current_user.id %>
+    </div>
+
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.label :name, value: current_user.name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :room %>
+      <%= form.label :room, value: current_user.room %>
+    </div>
+
+    <div class="field">
+      <%= form.hidden_field :status, value: "not_done" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit t("buy"), class: "btn btn-add"%>
+    </div>
+  <% end %>
+</div>

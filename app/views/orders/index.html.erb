@@ -1,0 +1,22 @@
+<% @orders.each do |order| %>
+  <p><%= t "name" %><%= order.user.name %></p>
+  <p><%= t "items" %></p>
+  <ul>
+    <% order.order_details.each do |item| %>
+    <li><%= item.quantity %> x <%= item.product.name %></li>
+    <% end %>
+  </ul>
+  <% if current_user.seller? != (@user == current_user) %>
+    <div id="update_order">
+      <%= form_for order, remote: true do |f| %>
+        <div class="field" style="width: 80px;">
+          <%= f.select :status, status_choice %>
+          <%= f.submit t("change"), class: "btn btn-info" %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p><%= t "status" %><%= order.status %></p>
+  <% end %>
+<% end %>
+<%= will_paginate %>

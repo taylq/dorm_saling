@@ -2,13 +2,17 @@ class User < ApplicationRecord
   enum position: %i(admin seller user)
 
   ATTRIBUTE_PARAMS =
-    %i(name email room phone area_id password password_confirmation
-      position).freeze
+    %i(
+      name email room phone area_id password password_confirmation position
+    ).freeze
 
   belongs_to :area
 
   has_many :orders, dependent: :destroy
   has_many :products, dependent: :destroy
+  has_one :cart, dependent: :destroy
+
+  accepts_nested_attributes_for :cart
 
   devise :database_authenticatable, :registerable,
     :rememberable, :validatable, :confirmable

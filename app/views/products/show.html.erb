@@ -1,0 +1,30 @@
+<div class="line">
+  <div class="picture-show col-sm-7">
+    <%= image_tag @product.picture.url if @product.picture? %></div>
+    <div class="col-sm-4">
+      <div class="unit5">
+        <p class="name"><strong><%= @product.name %></strong></p>
+        <p class="name1"><strong><%= @product.price %> VNĐ</strong></p>
+        <p>
+          <% @product.areas.each do |area| %>
+            <strong class="area">
+              <%= area.name %>
+            </strong>
+          <% end %>
+        </p>
+        <% if cannot? :update, @product %>
+          <%= link_to t("buy"), product_order_details_path(@product),
+            method: :post, class: "btn btn-info" %>
+        <% end %>
+        <% if can? :update, @product %>
+          <td><%= link_to t("edit"),
+            edit_product_path(@product), class: "btn btn-info" %></td>
+          <td><%= link_to t("destroy"), @product,
+            method: :delete, data: {confirm: t("confirm")},
+            class: "btn btn-danger" %>
+          </td>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

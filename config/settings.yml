@@ -1,2 +1,4 @@
 picture:
   size: 5
+page:
+  per_page: 5
