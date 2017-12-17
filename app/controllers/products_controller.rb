@@ -1,12 +1,16 @@
 class ProductsController < ApplicationController
-  attr_reader :product, :products
+  attr_reader :product, :products, :categories
 
   load_and_authorize_resource
 
   def index
     @categories = Category.all
-    @products = Product.product_by_category(@categories)
-      .product_by_area(current_user.area_id).product_by_time
+    @products =
+      if current_user.seller?
+        current_user.products
+      else
+        Product.product_by_area(current_user.area_id).product_by_time
+      end
   end
 
   def new

@@ -27,10 +27,6 @@ class Product < ApplicationRecord
     ->{where "? BETWEEN begin_at AND finish_at", Time.zone.now}
   scope :product_by_area,
     ->(area_id){joins(:areas_products).where areas_products: {area_id: area_id}}
-  scope :product_by_category,
-    ->(category_id){where category_id: category_id}
-  scope :product_by_seller_id,
-    ->(user_id){where user_id: user_id}
 
   private
 

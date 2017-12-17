@@ -9,6 +9,16 @@ en:
   change: "Change"
   submit: "Submit"
   buy: "Buy"
+  statuses:
+    accept: "Accept"
+    waiting: "Waiting"
+    not_done: "Not Done"
+  positions:
+    admin: "Admin"
+    seller: "Seller"
+    user: "User"
+  add_one: "+"
+  sub_one: "-"
   pages:
     home:
       title: "Home Page"

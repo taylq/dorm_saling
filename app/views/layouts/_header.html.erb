@@ -10,7 +10,8 @@
           <% end %>
           <li><%= link_to t("layouts.header.products"), products_path %></li>
           <li><%= link_to t("layouts.header.cart"),
-            cart_path(@current_cart) %></li>
+            carts_path %></li>
+          <%= render("carts/count") %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <%= t "layouts.header.account" %><b class="caret"></b></a>
