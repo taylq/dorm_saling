@@ -7,4 +7,8 @@ module SessionsHelper
       redirect_to root_path
     end
   end
+
+  def count_order_details
+    current_cart.order_details.sum(:quantity)
+  end
 end
