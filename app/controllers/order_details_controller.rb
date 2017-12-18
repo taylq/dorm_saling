@@ -3,11 +3,15 @@ class OrderDetailsController < ApplicationController
 
   def create
     chosen_product = Product.find_by id: params[:product_id]
-    current_order = current_cart.order_details
-    if check_current_cart chosen_product, current_order
-      flash[:success] = t "create_succ"
+    if chosen_product.area_ids.include?(current_user.area_id)
+      current_order = current_cart.order_details
+      if check_current_cart chosen_product, current_order
+        flash[:success] = t "create_succ"
+      else
+        flash[:danger] = t "create_fail"
+      end
     else
-      flash[:danger] = t "create_fail"
+      flash[:danger] = "Record not found"
     end
     redirect_to products_path
   end

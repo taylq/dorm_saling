@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   ATTRIBUTE_PARAMS =
     [
       :id, :name, :description, :user_id, :price, :picture, :category_id,
-      :begin_at, :finish_at,
+      :begin_at, :finish_at, :auto_close,
       areas_products_attributes: %i(id product_id area_id _destroy)
     ].freeze
 
@@ -27,6 +27,8 @@ class Product < ApplicationRecord
     ->{where "? BETWEEN begin_at AND finish_at", Time.zone.now}
   scope :product_by_area,
     ->(area_id){joins(:areas_products).where areas_products: {area_id: area_id}}
+  scope :product_auto_close,
+    ->{where auto_close: true}
 
   private
 

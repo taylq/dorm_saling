@@ -39,6 +39,11 @@
       <%= form.time_select :finish_at %>
     </div>
 
+    <div class="field">
+      <%= form.label :auto_set_area %><br/>
+      <%= form.check_box :auto_close %>
+    </div>
+
     <div class="field" data-length="<%= areas.length %>" id="length">
       <% areas.each do |area| %>
         <%= form.fields_for :areas_products,

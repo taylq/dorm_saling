@@ -3,6 +3,8 @@ class ProductsController < ApplicationController
 
   load_and_authorize_resource
 
+  before_action :reset_area
+
   def index
     @categories = Category.all
     @products =
@@ -53,5 +55,15 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit Product::ATTRIBUTE_PARAMS
+  end
+
+  def reset_area
+    if Time.now.strftime("%I:%M %p") == "07:58 PM"
+      Product.product_auto_close.each do |product|
+        product.areas_products.destroy_all
+        product.areas_products.create(product_id: product.id,
+          area_id: product.user.area_id)
+      end
+    end
   end
 end

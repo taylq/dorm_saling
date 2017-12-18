@@ -1,0 +1,8 @@
+<p><%= t "name" %><%= @order.user.name %></p>
+<p><%= t "items" %></p>
+<ul>
+  <% @order.order_details.each do |item| %>
+  <li><%= item.product.name %> x <%= item.quantity %></li>
+  <% end %>
+</ul>
+<p>Total: <%= @order.sub_total %></p>

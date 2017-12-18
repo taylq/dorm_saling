@@ -14,4 +14,12 @@ class Order < ApplicationRecord
   scope :shopping_cart, ->(user_id){where(user_id: user_id)}
   scope :order_paid, ->{where(status_payment: :paid).group("DATE(created_at)")}
   scope :order_unpaid, ->{where(status_payment: :unpaid).group("DATE(created_at)")}
+
+  def sub_total
+    sum = 0
+    order_details.each do |line_item|
+      sum += line_item.total_price
+    end
+    sum
+  end
 end

@@ -1,11 +1,6 @@
 <% @orders.each do |order| %>
-  <p><%= t "name" %><%= order.user.name %></p>
-  <p><%= t "items" %></p>
-  <ul>
-    <% order.order_details.each do |item| %>
-    <li><%= item.quantity %> x <%= item.product.name %></li>
-    <% end %>
-  </ul>
+  <p><%= t "name" %><%= link_to order.user.name, order %></p>
+  <p><%= order.created_at.strftime("%d/%m - %I:%M %p") %></p>
   <% if current_user.seller? != (@user == current_user) %>
     <div id="update_order">
       <%= form_for order, remote: true do |f| %>

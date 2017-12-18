@@ -16,6 +16,8 @@ class OrdersController < ApplicationController
       end
   end
 
+  def show; end
+
   def new; end
 
   def create
@@ -57,7 +59,7 @@ class OrdersController < ApplicationController
   def order_save order
     if order.save
       flash[:success] = t "order_success"
-      redirect_to root_path
+      redirect_to order_path order
     else
       render :new
       flash[:danger] = t "create_fail"

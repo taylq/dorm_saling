@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20171217113734) do
     t.integer "category_id"
     t.time "begin_at"
     t.time "finish_at"
+    t.boolean "auto_close", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"

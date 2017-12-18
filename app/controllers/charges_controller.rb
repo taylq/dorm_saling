@@ -7,7 +7,7 @@ class ChargesController < ApplicationController
   def create
     create_order
     StripeChargesServices.new(charges_params, current_user, current_cart).call
-    redirect_to carts_path
+    redirect_to order_path order
   end
 
   private
