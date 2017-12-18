@@ -24,6 +24,7 @@ gem "mini_magick", "4.7.0"
 gem "fog", "1.40.0"
 gem "config"
 gem "paranoia", "~> 2.2"
+gem "stripe"
 
 group :development do
   gem "listen", "3.0.8"

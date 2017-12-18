@@ -43,7 +43,8 @@ RemoveUnusedMethodsInControllersCheck: {
     "OrdersController#create",
     "OrderDetailsController#update",
     "OrderDetailsController#order_detail_params",
-    "OrderDetailsController#create"
+    "OrderDetailsController#create",
+    "ChargesController#create"
   ]
 }
 RemoveUnusedMethodsInHelpersCheck: { except_methods: [] }
