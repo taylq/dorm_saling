@@ -16,4 +16,8 @@ module ApplicationHelper
   def status_choice
     Order.statuses.keys.map{|status| t("statuses." + status)}
   end
+
+  def noti
+    @notifications = Notification.all.reverse
+  end
 end

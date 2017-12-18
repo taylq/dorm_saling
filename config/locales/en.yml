@@ -19,6 +19,13 @@ en:
     user: "User"
   add_one: "+"
   sub_one: "-"
+  see_all: "See all"
+  create_mess: "Message was successfully created."
+  prohibited: " prohibited this message from being saved:"
+  notifications: "Notifications"
+  mark_all_read: "Mark all as Read"
+  new_messages: "New message"
+  became: "%{body} want to become a seller"
   pages:
     home:
       title: "Home Page"

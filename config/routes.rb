@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     get "/pages/*page" => "pages#show"
     root "pages#show", page: "home"
 
-    resources :users
+    resources :users do
+      resources :messages
+    end
     resources :statistical
     resources :orders
     resources :carts
@@ -13,5 +15,6 @@ Rails.application.routes.draw do
       resources :order_details, only: :create
     end
     resources :order_details, only: %i(show destroy edit update)
+    resources :notifications
   end
 end

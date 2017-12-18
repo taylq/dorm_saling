@@ -9,18 +9,19 @@ class Ability
     elsif user.seller?
       can_of_seller user_id
     else
-      can_of_user user_id
+      can_of_user user_id, user
     end
   end
 
   private
 
-  def can_of_user user_id
+  def can_of_user user_id, user
     can :manage, Order, user_id: user_id
     can :show, Product, AreasProduct do |ap|
       ap.area_ids.include?(user.area_id)
     end
     can :index, Product
+    can %i(create show), Message
     can %i(show edit update create), User
   end
 
