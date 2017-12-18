@@ -70,6 +70,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chartkick (2.2.5)
     code_analyzer (0.4.8)
       sexp_processor
     codeclimate-engine-rb (0.4.0)
@@ -287,6 +288,8 @@ GEM
     formatador (0.2.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    groupdate (3.2.0)
+      activesupport (>= 3)
     guard (2.14.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -302,6 +305,8 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     hashie (3.5.6)
+    highcharts-rails (6.0.3)
+      railties (>= 3.1)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -346,6 +351,7 @@ GEM
     multi_json (1.12.2)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
+    mysql2 (0.4.10)
     nenv (0.3.0)
     nio4r (2.1.0)
     nokogiri (1.8.1)
@@ -570,6 +576,7 @@ DEPENDENCIES
   byebug (= 9.0.6)
   cancancan (~> 2.0)
   carrierwave (= 1.1.0)
+  chartkick
   coffee-rails (= 4.2.2)
   config
   database_cleaner
@@ -578,7 +585,9 @@ DEPENDENCIES
   faker (= 1.7.3)
   fog (= 1.40.0)
   font-awesome-rails
+  groupdate
   guard-rspec
+  highcharts-rails
   jbuilder (= 2.7.0)
   jquery-rails (= 4.3.1)
   jshint
@@ -586,6 +595,7 @@ DEPENDENCIES
   mini_magick (= 4.7.0)
   minitest
   minitest-reporters
+  mysql2
   omniauth-facebook
   paranoia (~> 2.2)
   pg (= 0.18.4)

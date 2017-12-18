@@ -25,6 +25,10 @@ gem "fog", "1.40.0"
 gem "config"
 gem "paranoia", "~> 2.2"
 gem "stripe"
+gem "chartkick"
+gem "highcharts-rails"
+gem "groupdate"
+gem 'mysql2'
 
 group :development do
   gem "listen", "3.0.8"

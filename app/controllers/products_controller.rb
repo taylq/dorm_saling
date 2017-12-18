@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
     @categories = Category.all
     @products =
       if current_user.seller?
-        current_user.products.all
+        current_user.products
       else
         Product.product_by_area(current_user.area_id).product_by_time
       end

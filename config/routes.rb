@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     root "pages#show", page: "home"
 
     resources :users
+    resources :statistical
     resources :orders
     resources :carts
     resources :charges

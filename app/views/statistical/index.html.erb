@@ -1,0 +1,7 @@
+<%= line_chart [
+  {name: "all", data: Order.group("DATE(created_at)").count},
+  {name: "paid", data: Order.order_paid.count},
+  {name: "unpaid", data: Order.order_unpaid.count}
+] %>
+<%= line_chart OrderDetail.group("DATE(created_at)").sum("quantity"),
+label: "Turnover", xtitle: "Date", ytitle: "Amount ($)" %>
