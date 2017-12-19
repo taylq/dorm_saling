@@ -1,6 +1,6 @@
 <div class="container">
   <div class="col-sm-offset-3 col-sm-6 form-sign">
-    <h3 class="form-signin-heading"><%= t "devise.mailer.login" %></h3>
+    <h3 class="form-signin-heading"><%= t "layouts.header.login" %></h3>
     <%= form_for resource, as: resource_name,
       url: session_path(resource_name), class: "form-signin" do |f| %>
       <div class="field">
@@ -9,21 +9,21 @@
       </div>
 
       <div class="field">
-        <%= f.label :password %><br />
+        <%= f.label :password, t("pass") %><br />
         <%= f.password_field :password, autocomplete: "off",
           class: "form-control" %>
       </div>
 
       <% if devise_mapping.rememberable? -%>
         <div class="check_box">
-          <%= f.label :remember_me %>
+          <%= f.label :remember_me, t("remember") %>
           <%= f.check_box :remember_me %>
         </div>
       <% end -%>
 
       <div class="actions">
-        <%= f.submit t("devise.mailer.login"),
-          class: "input-submit" %>
+        <%= f.submit "Đăng nhập",
+          class: "btn btn-default nut" %>
       </div>
     <% end %>
     <br/>

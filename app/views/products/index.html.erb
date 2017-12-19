@@ -1,6 +1,6 @@
 <% if can? :new, Product %>
   <a class="btn btn-add pull-right" href="<%= new_product_path %>">
-    <span class="fa fa-plus-square"> New</span>
+    <span class="fa fa-plus-square"> Tạo mới</span>
   </a>
 <% end %>
 <div class="container">
@@ -10,8 +10,7 @@
         <li class="active"><a data-filter="*" href="#">All</a></li>
         <% @categories.each do |category| %>
           <li><%= link_to category.name, "#",
-            data: {filter: ".#{category.id}"} %>
-          </li>
+            data: {filter: ".#{category.id}"} %></li>
         <% end %>
       </ul>
       <div class="projects-items">
@@ -29,8 +28,8 @@
                     <p class="center"><%= link_to product.price, product %>VNĐ</p>
                     <h6 class="center">
                       <% if cannot? :update, product %>
-                        <%= link_to t("buy"), product_order_details_path(product),
-              method: :post, class: "btn btn-info" %>
+                        <%= link_to '<i class="fa fa-shopping-cart"> Buy</i>'.html_safe,
+                        product_order_details_path(product), method: :post, class: "btn btn-add" %>
                       <% end %>
                     </h6>
                   </div>

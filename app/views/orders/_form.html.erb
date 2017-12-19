@@ -1,17 +1,17 @@
-<div class="format-login container">
-  <%= form_for [product, order], local: true do |form| %>
+<div class="format-login form-sign col-sm-offset-4 col-sm-4" style="text-align:center">
+  <%= form_for [product, order], local: true, class: "form-signin" do |form| %>
 
     <div class="field">
       <%= form.hidden_field :user_id, value: current_user.id %>
     </div>
 
     <div class="field">
-      <%= form.label :name %>
+      <%= form.label :name, "Tên khách hàng: " %>
       <%= form.label :name, value: current_user.name %>
     </div>
 
     <div class="field">
-      <%= form.label :room %>
+      <%= form.label :room, "Phòng: " %>
       <%= form.label :room, value: current_user.room %>
     </div>
 
@@ -23,24 +23,29 @@
       <%= form.hidden_field :status_payment, value: "unpaid" %>
     </div>
 
-    <div class="actions">
-      <%= form.submit t("buy"), class: "btn btn-add"%>
+    <div class="row">
+      <div class="form-action">
+        <%= form.submit "Thanh toán khi nhận hàng", class: "btn btn-add"%>
+      </div>
+
     </div>
   <% end %>
-  <%= form_tag charges_path do %>
-    <article>
-      <% if flash[:error].present? %>
-        <div id="error_explanation">
-          <p><%= flash[:error] %></p>
-        </div>
-      <% end %>
-      <%= hidden_field_tag :user_id, current_user.id %>
-      <%= hidden_field_tag :status, "not_done" %>
-      <%= hidden_field_tag :status_payment, "paid" %>
-    </article>
+    <div class="">
+      <%= form_tag charges_path do %>
+        <article>
+          <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+          <% end %>
+          <%= hidden_field_tag :user_id, current_user.id %>
+          <%= hidden_field_tag :status, "not_done" %>
+          <%= hidden_field_tag :status_payment, "paid" %>
+        </article>
 
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-      data-description="A month's subscription" data-locale="auto"></script>
-  <% end %>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Thanh toán trực tuyến" data-locale="auto"></script>
+      <% end %>
+    </div>
 </div>

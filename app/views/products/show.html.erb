@@ -13,16 +13,15 @@
           <% end %>
         </p>
         <% if cannot? :update, @product %>
-          <a class="btn btn-add" href="<%= new_product_order_path(@product) %>">
-            <span class="fa fa-shopping-cart"> Buy</span>
-          </a>
+          <%= link_to '<i class="fa fa-shopping-cart"> Buy</i>'.html_safe,
+                        product_order_details_path(@product), method: :post, class: "btn btn-add" %>
         <% end %>
         <% if can? :update, @product %>
-          <td><%= link_to t("edit"),
-            edit_product_path(@product), class: "btn btn-info" %></td>
-          <td><%= link_to t("destroy"), @product,
+          <td><%= link_to "Chỉnh sửa",
+            edit_product_path(@product), class: "btn btn-add", style: "background: #333" %></td>
+          <td><%= link_to "Xóa", @product,
             method: :delete, data: {confirm: t("confirm")},
-            class: "btn btn-danger" %>
+            class: "btn btn-add", style: "background: #fa3600" %>
           </td>
         <% end %>
       </div>

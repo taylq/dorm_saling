@@ -1,28 +1,48 @@
-<ul>
-  <% @carts.order_details.each do |order_detail| %>
-    <li><%= t "name" %><%= order_detail.product.name %></li>
-    <li>
-      <%= t "price" %>
-      <%= number_to_currency(order_detail.product.price) %></li>
-    <li><%= t "quantity" %><%= order_detail.quantity %></li>
-    <li>
-      <%= t "total_price" %>
-      <%= number_to_currency(order_detail.total_price) %></li>
-    <ul>
-      <li>
-        <%= form_for order_detail do |f| %>
-          <%= f.submit t("add_one"), class: "btn btn-default" %>
-          <%= f.submit t("sub_one"), class: "btn btn-default" %>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to t("remove_item"), order_detail_path(order_detail),
-          method: :delete %>
-      </li>
-    </ul>
-  <% end %>
-</ul>
-<h3><%= t "sub_price" %><%= number_to_currency(@carts.sub_total) %></h3>
-<%= link_to t("checkout"), new_order_path %><br>
-<%= link_to t("cancel"), cart_path(current_cart),method: :delete,
-  data: {confirm: t("confirm")} %>
+<table>
+  <thead>
+    <tr>
+      <th>Tên sản phẩm</th>
+      <th>Giá (VNĐ)</th>
+      <th>Số lượng</th>
+      <th>Tổng (VNĐ)</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @carts.order_details.each do |order_detail| %>
+    <tr>
+      <td><%= order_detail.product.name %></td>
+      <td><%= order_detail.product.price %></td>
+      <td><%= order_detail.quantity %></td>
+      <td>
+        <%= order_detail.total_price %></td>
+        <td>
+          <%= form_for order_detail, remote: true do |f| %>
+            <%= f.submit t("add_one"), class: "btn btn-default" %>
+            <%= f.submit t("sub_one"), class: "btn btn-default" %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "Xóa", order_detail_path(order_detail),
+            method: :delete, class: "btn btn-add", style: "background: #fa3600" %>
+        </td>
+        </tr>
+    <% end %>
+    <tr>
+      <td>Tổng giá đơn hàng</td>
+      <td></td>
+      <td></td>
+      <td><strong><%= @carts.sub_total %> VNĐ</strong></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<div class="row">
+<%= link_to "Thanh toán", new_order_path, class: "btn btn-add" %><br>
+<p class="pull-right">
+<%= link_to "Xóa đơn hàng", cart_path(current_cart),method: :delete,
+  data: {confirm: t("confirm")}, class: "btn btn-add1" %></p>
+</div>

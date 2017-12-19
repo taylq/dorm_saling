@@ -1,5 +1,36 @@
 vi:
   title_t: "Đại học FPT - Hòa Lạc"
+  pass: "Mật khẩu"
+  remember: "Ghi nhớ đăng nhập"
+  change: "Thay đổi"
+  mark_all_read: "Đánh dấu tất cả đã đọc"
+  notifications: "Thông báo"
+  see_all: "Xem tất cả"
+  submit: "Lưu"
+  add_one: "+"
+  sub_one: "-"
+  order_success: "Mua hàng thành công"
+  confirm: "Xác nhận xóa"
+  layouts:
+    search: "Tìm kiếm sản phẩm"
+    language: "Ngôn ngữ"
+    en: "Tiếng Anh"
+    vi: "Tiếng Việt"
+    account: "Tài khoản"
+    profile: "Thông tin tài khoản"
+    setting: "Cài đặt"
+    logout: "Đăng xuất"
+    header:
+      home: "Trang chủ"
+      login: "Đăng nhập"
+      products: "Sản phẩm"
+      orders: "Lịch sử đặt hàng"
+      users: "Quản lý người dùng"
+      thong_ke: "Thống kê"
+      send_messages: "Trở thành seller"
+  devise:
+    mailer:
+      login:
   pages:
     home:
       title: "Trang chủ"

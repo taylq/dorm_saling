@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def status_choice
-    Order.statuses.keys.map{|status| t("statuses." + status)}
+    Order.statuses.keys.map{|status| [t("#{status}"), status]}
   end
 
   def noti

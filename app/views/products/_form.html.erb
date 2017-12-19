@@ -1,67 +1,115 @@
 <div class="container">
-  <div class="col-sm-offset-3 col-sm-6">
+<div class="col-sm-offset-2 col-sm-8 form-sign">
   <%= form_for product, local: true, class: "form-signin" do |form| %>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="avatar-upload">
+          <div class="avatar-edit">
+            <%= form.file_field :picture, accept: "image/jpeg,image/gif,image/png", id: "imageUpload" %>
+            <label for="imageUpload"></label>
+          </div>
+          <div class="avatar-preview">
+            <div id="imagePreview" style="background-image: url(https://www.retailnews.asia/wp-content/uploads/2017/07/Ksubaka-Pasta.jpg);">
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <div class="field">
-      <%= form.hidden_field :user_id, value: current_user.id %>
+        <div class="field">
+          <%= form.hidden_field :user_id, value: current_user.id %>
+        </div>
+
+      <div class="col-sm-6">
+        <div class="field">
+          <%= form.label :name, "Tên sản phẩm" %>
+          <%= form.text_field :name, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :description, "Mô tả" %>
+          <%= form.text_area :description, class: "form-control" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :price, "Giá sản phẩm" %><br/>
+          <%= form.number_field :price, label: false, class: "form-control" %>
+        </div>
+
+        <div class="row">
+
+        </div>
+      </div>
     </div>
 
-    <div class="field">
-      <%= form.label :name %>
-      <%= form.text_field :name, autofocus: true, class: "form-control" %>
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="field">
+          <%= form.label :category_id, "Loại sản phẩm" %><br/>
+          <%= form.select :category_id, category_choices, class: "select" %>
+        </div>
+      </div>
+
+      <div class="col-sm-4" style="padding-left: 47px">
+        <div class="field">
+          <%= form.label :auto_set_area, "Chỉ bán #{current_user.area.name} sau 22:30?" %><br/>
+          <label class="switch">
+            <%= form.check_box :auto_close %>
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="col-sm-6" style="padding-left: 50px">
+        <div class="field" data-length="<%= areas.length %>" id="length">
+          <% areas.each do |area| %>
+            <%= form.fields_for :areas_products,
+              area.area_ids_of_product(product) ||
+              product.areas_products.build do |ap| %>
+              <%= form.label area.name %>
+              <%= ap.check_box :area_id, {id: "checkbox_check#{area.id}",
+                class: "checkbox2"}, area.id, 0 %>
+              <%= ap.hidden_field :_destroy, id: "data-form-prepend#{area.id}" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-sm-6 pull-time">
+        <div class="field" style="float:left; padding-right: 75px;">
+          <%= form.label :begin_at, "Thời gian mở cửa" %><br/>
+          <%= form.time_select :begin_at, class: "form-control time_select" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :finish_at, "Thời gian đóng cửa" %><br/>
+          <%= form.time_select :finish_at, class: "form-control time_select" %>
+        </div>
+    </div>
+    <div class="row" style="padding-left: 30px;">
+      <div class="actions">
+        <%= link_to t("back"), products_path,
+          class: "btn btn-add1" %>
+        <%= form.submit t("submit"),
+            class: "btn btn-add", id: "merge_button" %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= form.label :description %>
-      <%= form.text_area :description, class: "form-control" %>
-    </div>
-
-    <div class="field">
-      <%= form.label :price %><br/>
-      <%= form.number_field :price, label: false, class: "form-control" %>
-    </div>
-
-    <span class="picture" id="micropost_picture">
-      <%= form.file_field :picture, accept: "image/jpeg,image/gif,image/png" %>
-    </span>
-
-    <div class="field">
-      <%= form.label :category_id %><br/>
-      <%= form.select :category_id, category_choices, class: "select" %>
-    </div>
-
-    <div class="field">
-      <%= form.label :begin_at %><br/>
-      <%= form.time_select :begin_at, class: "form-control" %>
-    </div>
-
-    <div class="field">
-      <%= form.label :finish_at %><br/>
-      <%= form.time_select :finish_at, class: "form-control" %>
-    </div>
-
-    <div class="field">
-      <%= form.label :auto_set_area %><br/>
-      <%= form.check_box :auto_close %>
-    </div>
-
-    <div class="field" data-length="<%= areas.length %>" id="length">
-      <% areas.each do |area| %>
-        <%= form.fields_for :areas_products,
-          area.area_ids_of_product(product) ||
-          product.areas_products.build do |ap| %>
-          <%= form.label area.name %>
-          <%= ap.check_box :area_id, {id: "checkbox_check#{area.id}",
-            class: "checkbox2"}, area.id, 0 %>
-          <%= ap.hidden_field :_destroy, id: "data-form-prepend#{area.id}" %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class="actions">
-      <%= form.submit t("submit"),
-          class: "input-submit", id: "merge_button" %>
-    </div>
   <% end %>
   </div>
 </div>
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+            $('#imagePreview').hide();
+            $('#imagePreview').fadeIn(650);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#imageUpload").change(function() {
+    readURL(this);
+});
+</script>

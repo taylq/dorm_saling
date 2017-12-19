@@ -81,8 +81,8 @@
                     <p class="center"><%= link_to product.price, product %>VNĐ</p>
                     <h6 class="center">
                       <% if cannot? :update, product %>
-                        <%= link_to t("buy"), product_order_details_path(product),
-              method: :post, class: "btn btn-info" %>
+                        <%= link_to '<i class="fa fa-shopping-cart"> Buy</i>'.html_safe,
+                        product_order_details_path(product), method: :post, class: "btn btn-add" %>
                       <% end %>
                     </h6>
                   </div>
