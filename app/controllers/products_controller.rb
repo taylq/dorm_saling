@@ -1,17 +1,19 @@
 class ProductsController < ApplicationController
-  attr_reader :product, :products, :categories
+  attr_reader :product, :products, :categories, :search
 
   load_and_authorize_resource
+  before_action :authenticate_user!
 
-  before_action :reset_area
+  before_action :reset_area, only: :index
 
   def index
     @categories = Category.all
+    @search = Product.ransack params[:q]
     @products =
       if current_user.seller?
         current_user.products
       else
-        Product.product_by_area(current_user.area_id).product_by_time
+        search.result.product_by_time.product_by_area(current_user.area_id).product_by_category(@categories)
       end
   end
 
@@ -58,7 +60,7 @@ class ProductsController < ApplicationController
   end
 
   def reset_area
-    if Time.now.strftime("%I:%M %p") == "10:58 PM"
+    if Time.now.strftime("%I:%M %p") == "10:30 PM"
       Product.product_auto_close.each do |product|
         product.areas_products.destroy_all
         product.areas_products.create(product_id: product.id,

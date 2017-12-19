@@ -1,17 +1,17 @@
-<li>
-  <p><%= link_to user.name, user %>
+<tr>
+  <td><%= link_to user.name, user %></td>
     <% if current_user.admin? != (user == current_user) %>
       <div id="update">
         <%= form_for user, remote: true do |f| %>
-          <div class="field" style="width: 80px;">
-            <%= f.select :position, position_choice %>
-            <%= f.submit t("change"), class: "btn btn-info" %>
-          </div>
+          <td class="field" style="width: 80px;">
+            <%= f.select :position, position_choice %></td>
+            <td><%= f.submit t("change"), class: "btn btn-info" %>
+          </td>
         <% end %>
       </div>
-      <%= link_to t("users.user.delete"), user, method: :delete,
+      <td><%= link_to t("users.user.delete"), user, method: :delete,
         data: {confirm: t("users.user.sure")},remote: true,
         class: "btn btn-success user_delete" %>
+      </td>
     <% end %>
-  </p>
-</li>
+</tr>

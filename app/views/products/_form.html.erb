@@ -1,5 +1,6 @@
-<div class="format-login container">
-  <%= form_for product, local: true do |form| %>
+<div class="container">
+  <div class="col-sm-offset-3 col-sm-6">
+  <%= form_for product, local: true, class: "form-signin" do |form| %>
 
     <div class="field">
       <%= form.hidden_field :user_id, value: current_user.id %>
@@ -7,17 +8,17 @@
 
     <div class="field">
       <%= form.label :name %>
-      <%= form.text_field :name, autofocus: true %>
+      <%= form.text_field :name, autofocus: true, class: "form-control" %>
     </div>
 
     <div class="field">
       <%= form.label :description %>
-      <%= form.text_area :description %>
+      <%= form.text_area :description, class: "form-control" %>
     </div>
 
     <div class="field">
       <%= form.label :price %><br/>
-      <%= form.number_field :price, label: false %>
+      <%= form.number_field :price, label: false, class: "form-control" %>
     </div>
 
     <span class="picture" id="micropost_picture">
@@ -26,17 +27,17 @@
 
     <div class="field">
       <%= form.label :category_id %><br/>
-      <%= form.select :category_id, category_choices %>
+      <%= form.select :category_id, category_choices, class: "select" %>
     </div>
 
     <div class="field">
       <%= form.label :begin_at %><br/>
-      <%= form.time_select :begin_at %>
+      <%= form.time_select :begin_at, class: "form-control" %>
     </div>
 
     <div class="field">
       <%= form.label :finish_at %><br/>
-      <%= form.time_select :finish_at %>
+      <%= form.time_select :finish_at, class: "form-control" %>
     </div>
 
     <div class="field">
@@ -58,7 +59,9 @@
     </div>
 
     <div class="actions">
-      <%= form.submit t("submit")%>
+      <%= form.submit t("submit"),
+          class: "input-submit", id: "merge_button" %>
     </div>
   <% end %>
+  </div>
 </div>

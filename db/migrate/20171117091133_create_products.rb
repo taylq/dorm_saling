@@ -7,8 +7,8 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.decimal :price
       t.string :picture
       t.integer :category_id
-      t.time :begin_at
-      t.time :finish_at
+      t.datetime :begin_at
+      t.datetime :finish_at
       t.boolean :auto_close, default: false
 
       t.timestamps

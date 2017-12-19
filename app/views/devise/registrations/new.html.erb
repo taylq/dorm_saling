@@ -1,50 +1,58 @@
-<h2><%= t "devise.mailer.sign_up" %></h2>
+<div class="container">
+  <div class="col-sm-offset-3 col-sm-6 form-sign">
+    <h3 class="form-signin-heading"><%= t "devise.mailer.sign_up" %></h3>
 
-<%= form_for resource, as: resource_name,
-  url: registration_path(resource_name) do |f| %>
-  <%= devise_error_messages! %>
+    <%= form_for resource, as: resource_name,
+      url: registration_path(resource_name), class: "form-signin" do |f| %>
+      <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+      <div class="field">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :room %><br />
+        <%= f.text_field :room, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :phone %><br />
+        <%= f.number_field :phone, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :area_id %><br/>
+        <%= f.select :area_id, area_choices %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %>
+          <%= t"devise.mailer.minimum" %>)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off",
+          class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off",
+          class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit t("devise.mailer.sign_up"),
+          class: "input-submit" %>
+      </div>
+    <% end %>
+    <br/>
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :room %><br />
-    <%= f.text_field :room, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.number_field :phone, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :area_id %><br/>
-    <%= f.select :area_id, area_choices %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %><%= t"devise.mailer.minimum" %>)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit t("devise.mailer.sign_up") %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

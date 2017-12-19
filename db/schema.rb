@@ -77,8 +77,8 @@ ActiveRecord::Schema.define(version: 20171217113734) do
     t.decimal "price", precision: 10
     t.string "picture"
     t.integer "category_id"
-    t.time "begin_at"
-    t.time "finish_at"
+    t.datetime "begin_at"
+    t.datetime "finish_at"
     t.boolean "auto_close", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

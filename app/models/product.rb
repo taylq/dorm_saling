@@ -29,6 +29,8 @@ class Product < ApplicationRecord
     ->(area_id){joins(:areas_products).where areas_products: {area_id: area_id}}
   scope :product_auto_close,
     ->{where auto_close: true}
+  scope :product_by_category,
+    ->(category_id){where(category_id: category_id)}
 
   private
 

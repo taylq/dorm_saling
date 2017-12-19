@@ -1,63 +1,75 @@
-<h2><%= t "devise.mailer.update" %><%= resource_name.to_s.humanize %></h2>
+<div class="container">
+  <div class="col-sm-offset-3 col-sm-6 form-sign">
+    <h3 class="form-signin-heading">
+      <%= t "devise.mailer.update" %><%= resource_name.to_s.humanize %></h3>
 
-<%= form_for resource, as: resource_name,
-  url: registration_path(resource_name), html: {method: :put} do |f| %>
-  <%= devise_error_messages! %>
+    <%= form_for resource, as: resource_name,
+      url: registration_path(resource_name), html: {method: :put},
+      class: "form-signin" do |f| %>
+      <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
+      <div class="field">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :room %><br />
-    <%= f.text_field :room, autofocus: true %>
-  </div>
+      <div class="field">
+        <%= f.label :room %><br />
+        <%= f.text_field :room, autofocus: true, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.number_field :phone, autofocus: true %>
-  </div>
+      <div class="field">
+        <%= f.label :phone %><br />
+        <%= f.number_field :phone, autofocus: true,
+          class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :area_id %><br/>
-    <%= f.select :area_id, area_choices %>
-  </div>
+      <div class="field">
+        <%= f.label :area_id %><br/>
+        <%= f.select :area_id, area_choices %>
+      </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div><%= t "devise.mailer.waiting_confirm",
-      unconfirmed: resource.unconfirmed_email %>
-    </div>
-  <% end %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div><%= t "devise.mailer.waiting_confirm",
+          unconfirmed: resource.unconfirmed_email %>
+        </div>
+      <% end %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> <%= t "devise.mailer.minimum" %></em>
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "off",
+          class: "form-control" %>
+        <% if @minimum_password_length %>
+          <br />
+          <em><%= @minimum_password_length %>
+            <%= t "devise.mailer.minimum" %></em>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off",
+          class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :current_password %>
+        <i><%= t "devise.mailer.need_confirm" %>
+        </i><br />
+        <%= f.password_field :current_password, autocomplete: "off",
+          class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit t("devise.mailer.update"),
+          class: "input-submit" %>
+      </div>
     <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i><%= t "devise.mailer.need_confirm" %>
-    </i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit t("devise.mailer.update") %>
-  </div>
-<% end %>
-
+</div>
 <%= link_to t("back"), :back %>

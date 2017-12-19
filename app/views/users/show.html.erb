@@ -3,12 +3,10 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user-info">
-      <h1>
-        <%= @user.name %></br>
-        <%= @user.position %></br>
-        <%= @user.email %></br>
-        <%= @user.area_id %></br>
-      </h1>
+        Name: <%= @user.name %></br>
+        Role: <%= @user.position %></br>
+        Email: <%= @user.email %></br>
+        <%= @user.area.name %></br>
     </section>
   </aside>
 </div>

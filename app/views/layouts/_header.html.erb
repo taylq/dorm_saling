@@ -1,42 +1,82 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to t("layouts.header.logo"), root_path, class: "logo" %>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to t("layouts.header.home"), root_path %></li>
-        <% if user_signed_in? %>
-          <% if current_user.admin? %>
-            <li><%= link_to t("layouts.header.users"), users_path %></li>
-            <li class="lix"><%= render "notifications/notification_center",
-              notifications: noti %></li>
-          <% end %>
-          <% if current_user.user? %>
-          <li><%= link_to t("layouts.header.send_messages"),
-            new_user_message_path(current_user) %></li>
-          <% end %>
-          <li><%= link_to t("layouts.header.products"), products_path %></li>
-          <li><%= link_to t("layouts.header.cart"),
-            carts_path %></li>
-          <%= render("carts/count") %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <%= t "layouts.header.account" %><b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><%= link_to t("layouts.header.profile"), current_user %></li>
-              <li><%= link_to t("layouts.header.setting"),
-                edit_user_registration_path %></li>
-              <li class="divider"></li>
-              <li>
-                <%= link_to t("layouts.header.logout"),
-                  destroy_user_session_path, method: :delete %>
+<header id="header" class="header">
+  <div class="header-wrap navbar navbar-fixed-top">
+    <div class="container">
+      <div class="row">
+        <div id="logo" class="col-sm-3">
+          <div class="logo">
+          <%= link_to image_tag("logo.png"), root_path, class: "colors something" %></div>
+        </div>
+        <div class="nav-wrap col-sm-9">
+          <nav class="mainnav">
+            <ul>
+              <%= search_form_for search_product do |f| %>
+                <li class="search">
+                  <%= f.text_field :name_cont, class: "search-box pull-right",
+                    placeholder: t("layouts.search") %>
+                </li>
+              <% end %>
+              <li><%= link_to t("layouts.header.home"), root_path,
+                class: "a something" %></li>
+              <% if user_signed_in? %>
+                <% if current_user.user? %>
+                  <li><%= link_to t("layouts.header.send_messages"),
+                    new_user_message_path(current_user), class: "a" %></li>
+                <% end %>
+                  <li><%= link_to t("layouts.header.products"),
+                    products_path, class: "a something" %></li>
+                  <li><%= link_to t("layouts.header.cart"),
+                    carts_path, class: "a" %></li>
+                  <%= render("carts/count") %>
+                  <li><%= link_to t("layouts.header.orders"),
+                    orders_path, class: "a" %></li>
+                <li class="">
+                  <%= link_to t("layouts.account"), "#", class: "a" %>
+                  <ul class="submenu">
+                    <li><%= link_to t("layouts.profile"),
+                      current_user %></li>
+                    <li><%= link_to t("layouts.setting"),
+                      edit_user_registration_path %></li>
+                    <li class="divider"></li>
+                    <li>
+                      <%= link_to t("layouts.logout"),
+                        destroy_user_session_path, method: :delete %>
+                    </li>
+                  </ul>
+                </li>
+                <% if current_user.admin? %>
+                  <li><%= link_to t("layouts.header.users"), users_path,
+                    class: "a something" %></li>
+                  <li class="lix">
+                    <%= render "notifications/notification_center",
+                    notifications: noti %></li>
+                <% end %>
+              <% else %>
+                <li><%= link_to t("layouts.header.login"),
+                  new_user_session_path, class: "a" %></li>
+              <% end %>
+              <li class="">
+                <a href="#" class="a">
+                  <%= t "layouts.language" %></a>
+                <ul class="submenu">
+                  <li>
+                    <%= link_to t("layouts.en"),
+                      locale: :en %>
+                  </li>
+                  <li>
+                    <%= link_to t("layouts.vi"),
+                      locale: :vi %>
+                  </li>
+                </ul>
               </li>
             </ul>
-          </li>
-        <% else %>
-          <li><%= link_to t("layouts.header.login"),
-            new_user_session_path %></li>
-        <% end %>
-      </ul>
-    </nav>
+          </nav>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
+<script type="text/javascript">
+$('.something').click(function() {
+    location.reload();
+});
+</script>

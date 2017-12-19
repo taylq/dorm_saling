@@ -1,16 +1,28 @@
-<footer class="footer">
-  <small>
-    <%= t "layouts.footer.leftcontent" %>
-    <%= link_to t("layouts.footer.leftcontent1"),
-      "http://www.railstutorial.org/" %>
-    <%= t "layouts.footer.leftcontent2" %>
-    <%= link_to t("layouts.footer.leftcontent3"),
-      "http://www.michaelhartl.com/" %>
-  </small>
-  <nav>
-    <ul>
-      <li><%= link_to t("layouts.footer.rightcontent4"),
-        "http://news.railstutorial.org/" %></li>
-    </ul>
-  </nav>
-</footer>
+  <footer>
+    <div id="site-footer" class="footer">
+      <div class="site-footer-inner">
+        <div class="footer-content">
+          <div class="social-links">
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-youtube-play"></i></a>
+            <a href="#"><i class="fa fa-google-plus"></i></a>
+            <a href="#"><i class="fa fa-skype"></i></a>
+            <a href="#"><i class="fa fa-pinterest"></i></a>
+          </div>
+          <div class="copyright">
+            <div class="copyright-content">
+              <div id="text-6" class="widget widget_text">
+                <div class="textwidget">
+                  <div id="logo" class="col-sm-4">
+                    <div style="" class="logo">
+                      <%= link_to image_tag("logo.png"), root_path, class: "colors something" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /#footer-content -->
+      </div><!-- /.site-footer-inner -->
+    </div><!-- /.container -->
+  </footer>

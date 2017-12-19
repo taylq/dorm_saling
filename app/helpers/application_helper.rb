@@ -20,4 +20,8 @@ module ApplicationHelper
   def noti
     @notifications = Notification.all.reverse
   end
+
+  def search_product
+    @search = Product.ransack params[:q]
+  end
 end

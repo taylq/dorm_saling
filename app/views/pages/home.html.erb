@@ -1,4 +1,96 @@
-<% provide :title, t("pages.home.title") %>
+<section id="slider"><!--slider-->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#slider-carousel" data-slide-to="1"></li>
+            <li data-target="#slider-carousel" data-slide-to="2"></li>
+          </ol>
 
-<h2><%= t "pages.home.title" %></h2>
-<p><%= t "pages.home.description" %></p>
+          <div class="carousel-inner">
+            <div class="item active">
+              <div class="col-sm-6">
+                <h1><span>Bánh mỳ hội an</span></h1>
+                <h2>20.000 VNĐ</h2>
+                <button type="button" class="btn btn-default get">Buy it now</button>
+              </div>
+              <div class="col-sm-6">
+                <%= image_tag("banhmyhoian.jpg") %>
+              </div>
+            </div>
+            <div class="item">
+              <div class="col-sm-6">
+                <h1><span>Phở Hà Nội</span></h1>
+                <h2>30.000 VNĐ</h2>
+                <button type="button" class="btn btn-default get">Buy it now</button>
+              </div>
+              <div class="col-sm-6">
+                <%= image_tag("pho.jpg") %>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="col-sm-6">
+                <h1><span>Matcha</span></h1>
+                <h2>25.000 VNĐ</h2>
+                <button type="button" class="btn btn-default get">Buy it now</button>
+              </div>
+              <div class="col-sm-6">
+                <%= image_tag("macha.jpg") %>
+              </div>
+            </div>
+
+          </div>
+
+          <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+          </a>
+          <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section><!--/slider-->
+<div class="container">
+  <div class="row">
+    <div class="flat-projects">
+      <ul class="projects-filter style1">
+        <li class="active"><a data-filter="*" href="#">All</a></li>
+        <% @categories.each do |category| %>
+          <li><%= link_to category.name, "#",
+            data: {filter: ".#{category.id}"} %></li>
+        <% end %>
+      </ul>
+      <div class="projects-items">
+        <% @products.each do |product| %>
+            <div class="projects flat-column-4 hentry <%= product.category.id %>">
+              <div class="project-wrap size">
+                <div class="project-thumbnail">
+                    <%= image_tag product.picture.url if product.picture? %>
+                </div>
+                <div class="">
+                  <div class="">
+                    <h3 class="center tittle">
+                      <%= link_to product.name, product %>
+                    </h3>
+                    <p class="center"><%= link_to product.price, product %>VNĐ</p>
+                    <h6 class="center">
+                      <% if cannot? :update, product %>
+                        <%= link_to t("buy"), product_order_details_path(product),
+              method: :post, class: "btn btn-info" %>
+                      <% end %>
+                    </h6>
+                  </div>
+                </div>
+              </div><!-- /.project-wrap -->
+            </div><!-- /.hentry -->
+        <% end %>
+      </div><!-- /.projects-items -->
+    </div>
+  </div>
+</div>

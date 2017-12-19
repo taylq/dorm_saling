@@ -1,52 +1,44 @@
-<table>
-  <thead>
-    <tr>
-      <th><%= t "image" %></th>
-      <th><%= t "name" %></th>
-      <th><%= t "des" %></th>
-      <th><%= t "price" %></th>
-      <th><%= t "area" %></th>
-      <th><%= t "start_time" %></th>
-      <th><%= t "finish_time" %></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= image_tag product.picture.url if product.picture? %></td>
-        <td><%= product.name %></td>
-        <td><%= product.description %></td>
-        <td><%= product.price %></td>
-        <td>
-          <% product.areas.each do |area| %>
-            <%= area.name %>
-          <% end %>
-        </td>
-        <td><%= product.begin_at.strftime("%I:%M %p") %></td>
-        <td><%= product.finish_at.strftime("%I:%M %p") %></td>
-        <td>
-          <% if cannot? :update, product %>
-            <%= link_to t("buy"), product_order_details_path(product),
-              method: :post, class: "btn btn-info" %>
-          <% end %>
-        </td>
-        <% if can? :update, product %>
-          <td><%= link_to t("edit"),
-            edit_product_path(product), class: "btn btn-info" %></td>
-          <td>
-            <%= link_to t("destroy"), product,
-              method: :delete, data: {confirm: t("confirm")},
-              class: "btn btn-danger" %>
-          </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 <% if can? :new, Product %>
-  <%= link_to t("new"), new_product_path %>
+  <a class="btn btn-add pull-right" href="<%= new_product_path %>">
+    <span class="fa fa-plus-square"> New</span>
+  </a>
 <% end %>
+<div class="container">
+  <div class="row">
+    <div class="flat-projects">
+      <ul class="projects-filter style1">
+        <li class="active"><a data-filter="*" href="#">All</a></li>
+        <% @categories.each do |category| %>
+          <li><%= link_to category.name, "#",
+            data: {filter: ".#{category.id}"} %>
+          </li>
+        <% end %>
+      </ul>
+      <div class="projects-items">
+        <% @products.each do |product| %>
+            <div class="projects flat-column-4 hentry <%= product.category.id %>">
+              <div class="project-wrap size">
+                <div class="project-thumbnail">
+                    <%= image_tag product.picture.url if product.picture? %>
+                </div>
+                <div class="">
+                  <div class="">
+                    <h3 class="center tittle">
+                      <%= link_to product.name, product %>
+                    </h3>
+                    <p class="center"><%= link_to product.price, product %>VNĐ</p>
+                    <h6 class="center">
+                      <% if cannot? :update, product %>
+                        <%= link_to t("buy"), product_order_details_path(product),
+              method: :post, class: "btn btn-info" %>
+                      <% end %>
+                    </h6>
+                  </div>
+                </div>
+              </div><!-- /.project-wrap -->
+            </div><!-- /.hentry -->
+        <% end %>
+      </div><!-- /.projects-items -->
+    </div>
+  </div>
+</div>

@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!
+
   def show
+    @categories = Category.all
+    @products = Product.product_by_time.product_by_area(current_user.area_id).product_by_category(@categories)
     if valid_page?
       render "pages/#{params[:page]}"
     else

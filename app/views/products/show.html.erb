@@ -13,8 +13,9 @@
           <% end %>
         </p>
         <% if cannot? :update, @product %>
-          <%= link_to t("buy"), product_order_details_path(@product),
-            method: :post, class: "btn btn-info" %>
+          <a class="btn btn-add" href="<%= new_product_order_path(@product) %>">
+            <span class="fa fa-shopping-cart"> Buy</span>
+          </a>
         <% end %>
         <% if can? :update, @product %>
           <td><%= link_to t("edit"),
