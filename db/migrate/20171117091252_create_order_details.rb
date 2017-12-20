@@ -6,6 +6,7 @@ class CreateOrderDetails < ActiveRecord::Migration[5.1]
       t.integer :cart_id
       t.integer :quantity, default: 1
       t.integer :cart_order_id
+      t.decimal :product_price
       t.string :cart_order_type
 
       t.timestamps

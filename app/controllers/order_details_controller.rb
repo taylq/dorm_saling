@@ -37,7 +37,7 @@ class OrderDetailsController < ApplicationController
   private
 
   def order_detail_params
-    params.require(:order_detail).permit :quantity, :product_id, :cart_id
+    params.require(:order_detail).permit :quantity, :product_id, :cart_id, :product_price
   end
 
   def check_current_cart chosen_product, current_order
@@ -45,18 +45,18 @@ class OrderDetailsController < ApplicationController
       order_detail = current_order.find_by product_id: chosen_product
       add_quantity_order_details order_detail
     else
-      order_detail = current_order.build product_id: chosen_product
+      order_detail = current_order.build(product_id: chosen_product, product_price: chosen_product.price)
       add_order_detail current_cart, chosen_product, order_detail
     end
     order_detail.save
   end
 
   def add_button order_detail
-    order_detail.add_quantity if params[:commit] == "+"
+    order_detail.add_quantity if params[:commit] == ">>"
   end
 
   def sub_button order_detail
-    order_detail.sub_quantity if params[:commit] == "-"
+    order_detail.sub_quantity if params[:commit] == "<<"
   end
 
   def check_update order_detail

@@ -1,18 +1,46 @@
-<% @orders.each do |order| %>
-  <p><%= t "name" %><%= link_to order.user.name, order %></p>
-  <p><%= order.created_at.strftime("%d/%m - %I:%M %p") %></p>
-  <% if current_user.seller? != (@user == current_user) %>
-    <div id="update_order">
-      <%= form_for order, remote: true do |f| %>
-        <div class="field" style="width: 80px;">
-          <%= f.select :status, status_choice %>
-          <%= f.submit t("change"), class: "btn btn-info" %>
-        </div>
+<table>
+  <thead>
+    <tr>
+      <th>Thời gian đặt hàng</th>
+      <th>Trạng thái đơn hàng</th>
+      <% if current_user.seller? != (@user == current_user) %>
+        <th></th>
+        <th>Tên khách hàng</th>
       <% end %>
-    </div>
-  <% else %>
-    <p><%= t "status" %><%= order.status %></p>
-  <% end %>
-  <p><%= t "status_payment" %><%= order.status_payment %></p>
-<% end %>
-<%= will_paginate %>
+      <th>Trạng thái thanh toán</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+      <td><%= link_to order.created_at.strftime("%d/%m - %I:%M %p"), order_path(order), class: "b" %></td>
+      <% if current_user.seller? != (@user == current_user) %>
+        <div id="update_order">
+          <%= form_for order, remote: true do |f| %>
+            <td class="field" style="width: 80px;">
+              <%= f.select :status, status_choice %></td>
+            <td><%= f.submit t("change"), class: "btn btn-info" %>
+            </td>
+          <% end %>
+        </div>
+        <td><%= link_to order.user.name, order %></td>
+      <% else %>
+        <% if order.status == "not_done" %>
+          <td style="color: red;"><%= t("statuses.#{order.status}") %></td>
+        <% elsif order.status == "waiting" %>
+          <td style="color: blue;"><%= t("statuses.#{order.status}") %></td>
+        <% else %>
+          <td style="color: green;"><%= t("statuses.#{order.status}") %></td>
+        <% end %>
+      <% end %>
+      <% if order.status_payment == "paid" %>
+        <td style="color: green;"><%= t("status_payment.#{order.status_payment}") %></td>
+      <% else %>
+        <td style="color: red;"><%= t("status_payment.#{order.status_payment}") %></td>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="col-sm-offset-4"><%= will_paginate %></div>

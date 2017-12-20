@@ -48,6 +48,31 @@ $gray-medium-light: #eaeaea;
   }
 }
 
+.b {
+  color: black;
+  font-size: 14px;
+  font-style: normal;
+  padding: 15px 0;
+  position: relative;
+  text-transform: uppercase;
+  text-decoration: underline;
+
+  &::after {
+    background: black;
+    bottom: 7px;
+    content: '';
+    height: 1px;
+    left: 0;
+    position: absolute;
+    transition: all .2s ease-in-out 0s;
+    width: 0;
+  }
+
+  &:hover {
+    color: black;
+  }
+}
+
 html {
   overflow-y: scroll;
 }
@@ -1051,6 +1076,16 @@ label{
   }
 }
 
+.size-d{
+  img{
+    height: 175px;
+    width: 250px;
+    margin-left: 35px;
+    float: left;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+}
 .center{
   text-align: center;
 }
@@ -1311,4 +1346,12 @@ input:checked + .slider:before {
   color: #555;
   background-color: #fff;
   border: 1px solid #ccc;
+}
+
+.prd{
+  margin-top: 20px;
+}
+
+p{
+  color: black;
 }

@@ -1,5 +1,5 @@
 vi:
-  title_t: "Đại học FPT - Hòa Lạc"
+  title_t: "Dorm Saling"
   pass: "Mật khẩu"
   remember: "Ghi nhớ đăng nhập"
   change: "Thay đổi"
@@ -7,27 +7,43 @@ vi:
   notifications: "Thông báo"
   see_all: "Xem tất cả"
   submit: "Lưu"
-  add_one: "+"
-  sub_one: "-"
+  add_one: ">>"
+  sub_one: "<<"
   order_success: "Mua hàng thành công"
   confirm: "Xác nhận xóa"
+  create_succ: "Tạo thành công"
+  create_fail: "Tạo thất bại"
+  update_succ: "Cập nhật thành công"
+  update_fail: "Cập nhật thất bại"
+  destroy_succ: "Xóa thành công"
+  statuses:
+    accept: "Đã chấp nhận"
+    waiting: "Đang đợi"
+    not_done: "Chưa chấp nhận"
+  positions:
+    admin: "Admin"
+    seller: "Người bán hàng"
+    user: "Người dùng"
+  status_payment:
+    paid: "Đã thanh toán"
+    unpaid: "Chưa thanh toán"
   layouts:
     search: "Tìm kiếm sản phẩm"
     language: "Ngôn ngữ"
     en: "Tiếng Anh"
     vi: "Tiếng Việt"
     account: "Tài khoản"
-    profile: "Thông tin tài khoản"
+    profile: "Tài khoản"
     setting: "Cài đặt"
     logout: "Đăng xuất"
     header:
       home: "Trang chủ"
       login: "Đăng nhập"
       products: "Sản phẩm"
-      orders: "Lịch sử đặt hàng"
+      orders: "Đơn hàng"
       users: "Quản lý người dùng"
       thong_ke: "Thống kê"
-      send_messages: "Trở thành seller"
+      send_messages: "Đăng ký cửa hàng"
   devise:
     mailer:
       login:

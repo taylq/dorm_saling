@@ -78,7 +78,7 @@
                     <h3 class="center tittle">
                       <%= link_to product.name, product %>
                     </h3>
-                    <p class="center"><%= link_to product.price, product %>VNĐ</p>
+                    <p class="center"><%= link_to number_with_delimiter(product.price), product %>VNĐ</p>
                     <h6 class="center">
                       <% if cannot? :update, product %>
                         <%= link_to '<i class="fa fa-shopping-cart"> Buy</i>'.html_safe,

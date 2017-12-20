@@ -3,7 +3,7 @@
     <tr>
       <th>Tên sản phẩm</th>
       <th>Giá (VNĐ)</th>
-      <th>Số lượng</th>
+      <th style="padding-left: 42px">Số lượng</th>
       <th>Tổng (VNĐ)</th>
       <th></th>
       <th></th>
@@ -14,16 +14,15 @@
     <% @carts.order_details.each do |order_detail| %>
     <tr>
       <td><%= order_detail.product.name %></td>
-      <td><%= order_detail.product.price %></td>
-      <td><%= order_detail.quantity %></td>
-      <td>
-        <%= order_detail.total_price %></td>
+      <td><%= number_with_delimiter(order_detail.product.price) %></td>
         <td>
           <%= form_for order_detail, remote: true do |f| %>
-            <%= f.submit t("add_one"), class: "btn btn-default" %>
-            <%= f.submit t("sub_one"), class: "btn btn-default" %>
+            <%= f.submit t("sub_one"), class: "btn btn-default", style: "margin-right: 11px; height: 10%;" %>
+            <%= order_detail.quantity %>
+            <%= f.submit t("add_one"), class: "btn btn-default", style: "margin-left: 11px; height: 10%;" %>
           <% end %>
         </td>
+        <td><%= number_with_delimiter(order_detail.total_price) %></td>
         <td>
           <%= link_to "Xóa", order_detail_path(order_detail),
             method: :delete, class: "btn btn-add", style: "background: #fa3600" %>
@@ -34,7 +33,7 @@
       <td>Tổng giá đơn hàng</td>
       <td></td>
       <td></td>
-      <td><strong><%= @carts.sub_total %> VNĐ</strong></td>
+      <td><strong><%= number_with_delimiter(@carts.sub_total) %> VNĐ</strong></td>
       <td></td>
       <td></td>
     </tr>

@@ -1,8 +1,26 @@
-<p><%= t "name" %><%= @order.user.name %></p>
-<p><%= t "items" %></p>
-<ul>
+<div class="col-sm-offset-2 col-sm-8 form-sign">
+<div class="row">
+<p style="margin-left: 20px; color: black">Khách hàng: <%= @order.user.name %></p>
+<p style="margin-left: 20px; color: black">Phòng: <%= @order.user.room %></p>
+</div>
   <% @order.order_details.each do |item| %>
-  <li><%= item.product.name %> x <%= item.quantity %></li>
+  <div class="row">
+      <div class="project-wrap size-d">
+        <div class="project-thumbnail col-sm-5">
+          <%= image_tag item.product.picture.url if item.product.picture? %>
+        </div>
+        <div class="col-sm-7">
+          <div class="row">
+          <div class="prd col-sm-11" style="color: #333"><%= item.product.name %> x <%= item.quantity %>
+          <b class="pull-right">
+            <%= number_with_delimiter(item.product_price * item.quantity) %> VNĐ</b>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
-</ul>
-<p>Total: <%= @order.sub_total %></p>
+  <div>
+<p style="margin-left: 550px; color: #333; background: #ddd; border-radius: .25rem; padding-left: 15px; padding-right: 15px;">
+  Total: <b><%= number_with_delimiter(@order.sub_total) %> VNĐ</b></p></div>
+</div>

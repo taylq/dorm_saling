@@ -4,7 +4,10 @@
     <div class="col-sm-4">
       <div class="unit5">
         <p class="name"><strong><%= @product.name %></strong></p>
-        <p class="name1"><strong><%= @product.price %> VNĐ</strong></p>
+        <p class="name1"><strong><%= number_with_delimiter(@product.price) %> VNĐ</strong></p>
+        <p class="area" style="font-size: 16px;">
+          <%= @product.begin_at.strftime("%I:%M %p") %> - <%= @product.finish_at.strftime("%I:%M %p") %>
+        </p>
         <p>
           <% @product.areas.each do |area| %>
             <strong class="area">

@@ -67,14 +67,14 @@
                     <%= link_to t("layouts.account"), "#", class: "a" %>
                     <ul class="submenu">
                       <li><%= link_to t("layouts.header.orders"),
-                        orders_path %></li>
+                        orders_path, class: "something" %></li>
                       <% if current_user.user? %>
                         <li><%= link_to t("layouts.header.send_messages"),
                           new_user_message_path(current_user) %></li>
                       <% end %>
                       <% if current_user.seller? %>
                         <li><%= link_to t("layouts.header.thong_ke"),
-                          statistical_index_path %></li>
+                          statistical_index_path, class: "something" %></li>
                       <% end %>
                       <li><%= link_to t("layouts.profile"),
                         current_user %></li>

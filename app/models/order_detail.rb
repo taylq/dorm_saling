@@ -4,8 +4,10 @@ class OrderDetail < ApplicationRecord
   belongs_to :cart_order, polymorphic: true, optional: true
   belongs_to :cart, optional: true
 
+  scope :order_of_seller, ->(user_id){where(product_id: [Product.product_of_seller(user_id).ids])}
+
   def total_price
-    quantity * product.price
+    quantity * product_price
   end
 
   def add_quantity

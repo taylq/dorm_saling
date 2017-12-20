@@ -1,5 +1,5 @@
 <div class="container">
-<div class="col-sm-offset-2 col-sm-8 form-sign">
+<div class="col-sm-offset-1 col-sm-10 form-sign">
   <%= form_for product, local: true, class: "form-signin" do |form| %>
     <div class="row">
       <div class="col-sm-6">
@@ -42,7 +42,7 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <div class="field">
           <%= form.label :category_id, "Loại sản phẩm" %><br/>
           <%= form.select :category_id, category_choices, class: "select" %>
@@ -59,13 +59,13 @@
         </div>
       </div>
 
-      <div class="col-sm-6" style="padding-left: 50px">
+      <div class="col-sm-5" style="padding-left: 50px">
         <div class="field" data-length="<%= areas.length %>" id="length">
           <% areas.each do |area| %>
             <%= form.fields_for :areas_products,
               area.area_ids_of_product(product) ||
               product.areas_products.build do |ap| %>
-              <%= form.label area.name %>
+              <%= form.label area.name, style: "text-transform: uppercase;" %>
               <%= ap.check_box :area_id, {id: "checkbox_check#{area.id}",
                 class: "checkbox2"}, area.id, 0 %>
               <%= ap.hidden_field :_destroy, id: "data-form-prepend#{area.id}" %>
@@ -75,7 +75,7 @@
       </div>
 
       <div class="col-sm-6 pull-time">
-        <div class="field" style="float:left; padding-right: 75px;">
+        <div class="field" style="float:left; padding-right: 137px;">
           <%= form.label :begin_at, "Thời gian mở cửa" %><br/>
           <%= form.time_select :begin_at, class: "form-control time_select" %>
         </div>

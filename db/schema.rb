@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20171217113734) do
     t.integer "cart_id"
     t.integer "quantity", default: 1
     t.integer "cart_order_id"
+    t.decimal "product_price", precision: 10
     t.string "cart_order_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

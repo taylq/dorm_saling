@@ -26,7 +26,7 @@ class Ability
   end
 
   def can_of_seller user_id
-    can %i(index show new create destroy), Order, user_id: user_id
+    can %i(index show new create destroy), Order
     can %i(edit update), Order
     can %i(read), Product
     can %i(edit update create destroy), Product, user_id: user_id

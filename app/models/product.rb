@@ -31,6 +31,7 @@ class Product < ApplicationRecord
     ->{where auto_close: true}
   scope :product_by_category,
     ->(category_id){where(category_id: category_id)}
+  scope :product_of_seller, ->(user_id){where(user_id: user_id)}
 
   private
 

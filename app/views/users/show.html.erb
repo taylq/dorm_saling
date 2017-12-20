@@ -1,12 +1,13 @@
 <% provide :title, @user.name %>
-
+<div class="form-sign col-sm-offset-4 col-sm-4">
 <div class="row">
-  <aside class="col-md-4">
-    <section class="user-info">
+  <aside style="text-align: center">
+    <section class="user-info" style="color: #333">
         Tên: <%= @user.name %></br>
         Vai trò: <%= @user.position %></br>
         Email: <%= @user.email %></br>
         KTX: <%= @user.area.name %></br>
     </section>
   </aside>
+</div>
 </div>
