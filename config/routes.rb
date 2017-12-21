@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :users
     resources :orders
     resources :carts
+    resources :charges
     resources :products do
       resources :order_details, only: :create
     end
