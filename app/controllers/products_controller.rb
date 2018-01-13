@@ -60,7 +60,7 @@ class ProductsController < ApplicationController
   end
 
   def reset_area
-    if Time.now.strftime("%I:%M %p") == "10:30 PM"
+    if Time.now.strftime("%H:%M:%S") >= "23:00:00"
       Product.product_auto_close.each do |product|
         product.areas_products.destroy_all
         product.areas_products.create(product_id: product.id,
